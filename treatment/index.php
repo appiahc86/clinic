@@ -12,10 +12,12 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="" method="post" class="myform">
+
+            <form action="treat.php " method="post" class="myform">
                 <div class="form-group">
-                    <label for=""><b>Additional Info</b></label>
-                    <textarea class="form-control" name="" id="" cols="30" rows="5" required></textarea>
+                    <label for=""><b>Treatment</b></label>
+                    <textarea class="form-control" name="treat" id="" cols="30" rows="5" required></textarea>
+
                 </div>
 
                 <div class="form-group">
@@ -41,11 +43,11 @@
             <div class="modal-body">
 
 
-                <!-- ./Form -->
-                <form action="" method="post" class="myform">
+                <form action="presc.php" method="post" class="myform">
                     <div class="form-group">
                         <label for=""><b>Prescription</b></label>
-                        <textarea name="" id="" cols="30" rows="4" class="form-control" required></textarea>
+                        <textarea name="prescription" id="" cols="30" rows="4" class="form-control" required></textarea>
+
                     </div>
 
                     <div class="col-md-12 text-right">
@@ -73,11 +75,13 @@
             </div>
             <div class="modal-body">
 
-                <!-- ./Form -->
-                <form action="" method="post" class="myform">
+                <form action="labtype.php" method="post" class="myform">           
+
+   
                     <div class="form-group">
-                        <label for=""><b>Test</b></label>
-                        <textarea name="" id="" cols="30" rows="4" class="form-control" required></textarea>
+                 <label for=""><b>Test</b></label>
+              <textarea name="lab_type" id="" cols="30" rows="4" class="form-control" required></textarea>
+
                     </div>
 
                     <div class="col-md-12 text-right">
