@@ -83,6 +83,7 @@
             }
         }
 
+        //success messages
         <?php
             if (!empty($_SESSION['success_msg'])){ ?>
 
@@ -92,10 +93,24 @@
                  unset($_SESSION['success_msg']);
             } ?>
 
+         // Error messages
+        <?php
+        if (!empty($_SESSION['error_msg'])){ ?>
+
+        toastr.error('<?php echo $_SESSION['error_msg']; ?>'); //Success messages
+
+        <?php
+        unset($_SESSION['error_msg']);
+        } ?>
 
 
+        //display new opd Info
+        <?php   if ($_SESSION['opdNumber']){  ?>
+        $('#opdNumber').click();
+       <?php  unset($_SESSION['opdNumber']); } ?>
 
     }
+
 </script>
 </body>
 

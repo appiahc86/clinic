@@ -1,7 +1,6 @@
 <?php include "../layouts/header.php"; ?>
 
-
-
+<button class="d-none" id="opdNumber" data-toggle="modal" data-target="#opd<?php echo $_SESSION['opdNumber'] ? $_SESSION['opdNumber'] : ''; ?>"></button>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -20,15 +19,12 @@
                 <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>OPD</th>
+                        <th>OPD No</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>INS Number</th>
-                        <th>Age</th>
-                        <th>Phone</th>
+                        <th>INS No</th>
                         <th>Sex</th>
-                        <th>Address</th>
-                        <th>Amount</th>
+                        <th>Details</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -36,33 +32,30 @@
                     <tbody>
 
                     <?php
-                    include('function.php');
                     include('../dbconnect.php');
-                    $result = $db->prepare("SELECT * FROM patient ORDER BY id DESC");
-                    $result->execute();
-                    for($i=0; $row = $result->fetch(); $i++){
+                    $results = $db->prepare("SELECT * FROM patients");
+                    $results->execute();
+                    for($i=0; $row = $results->fetch(); $i++){
                     ?>
 
                     <tr>
                         <td>MC<?php echo $row['id']; ?></td>
                         <td><?php echo $row['firstName']; ?></td>
                         <td><?php echo $row['lastName']; ?></td>
-                        <td><?php echo $row['ins']; ?></td>
-                        <td><?php echo $row['age']; ?></td>
-                        <td><?php echo $row['tel']; ?></td>
+                        <td><?php echo $row['insurance']; ?></td>
                         <td><?php echo $row['sex']; ?></td>
-                        <td><?php echo $row['address']; ?></td>
-                        <td><?php $amount=$row['amount']; echo formatMoney($amount, true); ?></td>
-                        <td>
+                        <td class="text-center"><a href="" class="btn btn-sm btn-success"><span class="fas fa-eye"></span></a></td>
+                        <td class="text-center">
                             <a class="btn btn-primary btn-sm" href="" data-toggle="modal" data-target="#edit<?php echo $row['id']; ?>">
                                 <span class="fas fa-edit"></span>
                             </a>
-                        </td>
+                        </td class="text-center">
                         <td>
-                            <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#del<?php echo $row['id']; ?>"><span class="fas fa-pencil-alt"></span></a>
+                            <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#del<?php echo $row['id']; ?>">
+                                <span class="fas fa-trash-alt"></span>
+                            </a>
                         </td>
                     </tr>
-
 
 
 
@@ -88,70 +81,70 @@
 
                                                 <div class="row">
                                                     <div class="form-group  col-md-4">
-                                                        <label for="firstName">First Name</label>
+                                                        <label for="e_firstName">First Name</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-user"></i>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control"  value="<?php echo $row['firstName']; ?>" minlength="3" autocomplete="off" required="required" name="firstName" type="text" id="firstName">
+                                                            <input class="form-control"  value="<?php echo $row['firstName']; ?>" minlength="3" autocomplete="off" required="required" name="firstName" type="text" id="e_firstName">
                                                         </div>
                                                     </div>
                                                     <div class="form-group  col-md-4">
-                                                        <label for="lastName">Last Name</label>
+                                                        <label for="e_lastName">Last Name</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-user"></i>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control" value="<?php echo $row['lastName']; ?>" minlength="3" autocomplete="off" required="required" name="lastName" type="text"  id="lastName">
+                                                            <input class="form-control" value="<?php echo $row['lastName']; ?>" minlength="3" autocomplete="off" required="required" name="lastName" type="text"  id="e_lastName">
                                                         </div>
                                                     </div>
                                                     <div class="form-group  col-md-4">
-                                                        <label for="tel">INS Number</label>
+                                                        <label for="e_ins">INS Number</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <span class="fas fa-list"></span>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control" name="ins" autocomplete="off" type="number" value="<?php echo $row['ins']; ?>" id="ins">
+                                                            <input class="form-control" name="insurance" autocomplete="off" type="text" value="<?php echo $row['insurance']; ?>" id="e_ins">
                                                         </div>
                                                     </div>
                                                     <div class="form-group  col-md-4">
-                                                        <label for="tel">Phone</label>
+                                                        <label for="e_contact">Contact</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <span class="fas fa-phone"></span>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control" name="tel" autocomplete="off" type="number" value="<?php echo $row['tel']; ?>" id="tel">
+                                                            <input class="form-control" name="contact" autocomplete="off" type="text" value="<?php echo $row['contact']; ?>" id="tel">
                                                         </div>
                                                     </div>
                                                     <div class="form-group  col-md-4">
-                                                        <label for="age">Age</label>
+                                                        <label for="e_dob">DOB</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text font-weight-bold">
                                                                     <span class="fas fa-user"></span>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control" value="<?php echo $row['age']; ?>" required="required" min="0" name="age" autocomplete="off" type="number" id="age">
+                                                            <input class="form-control" value="<?php echo $row['dob']; ?>" name="dob" type="date" id="e_dob">
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group  col-md-4">
-                                                        <label for="sex">Sex</label>
+                                                        <label for="e_sex">Sex</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text font-weight-bold">
                                                                     <span class="fas fa-user"></span>
                                                                 </div>
                                                             </div>
-                                                            <select name="sex" id="sex" class="form-control" required>
+                                                            <select name="sex" id="e_sex" class="form-control" required>
                                                                 <option value="<?php echo $row['sex']; ?>"><?php echo ucfirst($row['sex'])  ?></option>
                                                                 <option value="<?php echo $row['sex'] == 'male' ? 'female' : 'male'; ?>"><?php echo $row['sex'] == 'male' ? 'Female' : 'Male'; ?></option>
 
@@ -159,27 +152,16 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group  col-md-4">
-                                                        <label for="amount">Amount</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <b>₵</b>
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" value="<?php echo $row['amount']; ?>" class="form-control" step="0.01" name="amount" id="amount" required autocomplete="off">
-                                                        </div>
-                                                    </div>
 
                                                     <div class="form-group  col-md-12">
-                                                        <label for="address">Address</label>
+                                                        <label for="e_address">Address</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <span class="fas fa-address-card"></span>
                                                                 </div>
                                                             </div>
-                                                            <textarea name="address" class="form-control" id="address" cols="10" rows="4"><?php echo $row['address']; ?></textarea>
+                                                            <textarea name="address" class="form-control" id="e_address" cols="10" rows="4"><?php echo $row['address']; ?></textarea>
                                                         </div>
                                                     </div>
 
@@ -194,8 +176,6 @@
                                             </div>
 
                                         </form> <!-- ./Form -->
-
-
 
                                     </div>
 
@@ -254,9 +234,6 @@
 <!-- /.container-fluid -->
 
 
-
-
-
 <!--  Modal for adding Patient-->
 <div class="modal fade" id="addPatient" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
     <br><br>
@@ -285,7 +262,14 @@
                                             <i class="fas fa-user"></i>
                                         </div>
                                     </div>
-                                    <input class="form-control" minlength="3" autocomplete="off" required="required" name="firstName" type="text" value="" id="firstName">
+                                    <input class="form-control"
+                                           minlength="3"
+                                           autocomplete="off"
+                                           required="required"
+                                           name="firstName"
+                                           type="text"
+                                           value=""
+                                           id="firstName">
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
@@ -296,40 +280,46 @@
                                             <i class="fas fa-user"></i>
                                         </div>
                                     </div>
-                                    <input class="form-control" minlength="3" autocomplete="off" required="required" name="lastName" type="text" value="" id="lastName">
+                                    <input class="form-control"
+                                           minlength="3"
+                                           autocomplete="off"
+                                           required="required"
+                                           name="lastName"
+                                           type="text"
+                                           id="lastName">
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
-                                <label for="tel">INS Number</label>
+                                <label for="ins">Insurance No</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <span class="fas fa-list"></span>
                                         </div>
                                     </div>
-                                    <input class="form-control" name="ins" autocomplete="off" type="number" value="" id="ins">
+                                    <input class="form-control" name="insurance" autocomplete="off" type="text" id="ins">
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
-                                <label for="tel">Phone</label>
+                                <label for="contact">Contact</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <span class="fas fa-phone"></span>
                                         </div>
                                     </div>
-                                    <input class="form-control" name="tel" autocomplete="off" type="number" value="" id="tel">
+                                    <input class="form-control" name="contact" autocomplete="off" type="text" id="contact">
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
-                                <label for="age">Age</label>
+                                <label for="dob">DOB</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text font-weight-bold">
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
-                                    <input class="form-control" required="required" min="0" name="age" autocomplete="off" type="number" id="age">
+                                    <input class="form-control" required="required" name="dob" autocomplete="off" type="date" id="dob">
                                 </div>
                             </div>
 
@@ -373,8 +363,6 @@
                                 </div>
                             </div>
 
-
-
                             <div class="col-md-12 text-right">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <input class="btn btn-primary mybtn" type="submit" value="Save">
@@ -397,8 +385,77 @@
 
 
 
+<!-- OPD number Modal -->
+<div class="modal fade" id="opd<?php echo $_SESSION['opdNumber'] ? $_SESSION['opdNumber'] : ''; ?>" tabindex="-1"
+     data-backdrop="static"
+     data-keyboard="false" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <br>
+    <div class="modal-dialog" role="document">
+        <br><br>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <?php
+                if ($_SESSION['opdNumber']) { ?>
+
+                    <table class="table">
+                        <tr>
+                            <th>OPD No</th>
+                            <td><?php echo 'MC' . $_SESSION['opdNumber']['id']; ?></td>
+                        </tr>
+
+                        <tr>
+                            <th>First Name</th>
+                            <td><?php echo $_SESSION['opdNumber']['firstName']; ?></td>
+                        </tr>
+
+                        <tr>
+                            <th>Last Name</th>
+                            <td><?php echo $_SESSION['opdNumber']['lastName']; ?></td>
+                        </tr>
+
+                        <tr>
+                            <th>Age</th>
+                            <?php
+                            $yrFromDb = date('Y', strtotime($_SESSION['opdNumber']['dob']));
+                            $currYr = date('Y', strtotime(date('Y')));
+                            ?>
+                            <td><?php echo $currYr - $yrFromDb; ?></td>
+                        </tr>
+
+                        <tr>
+                            <th>Sex</th>
+                            <td><?php echo $_SESSION['opdNumber']['sex']; ?></td>
+                        </tr>
+
+                        <tr>
+                            <th>Contact</th>
+                            <td><?php echo $_SESSION['opdNumber']['contact']; ?></td>
+                        </tr>
+
+                        <tr>
+                            <th>Address</th>
+                            <td><?php echo $_SESSION['opdNumber']['address']; ?></td>
+                        </tr>
+
+                    </table>
+
+               <?php }  ?>
 
 
+            </div>
+
+        </div>
+    </div>
+</div> <!-- ./OPD number Modal -->
 
 
 <?php include "../layouts/footer.php"; ?>
