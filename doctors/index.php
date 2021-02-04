@@ -1,72 +1,54 @@
-<?php include "../layouts/header.php"; ?>
+<?php include '../layouts/header.php'; ?>
 
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-
-<!-- Begin Page Content -->
-<div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Doctor Center</h1>
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <button class="text-decoration-none btn btn-primary btn-sm mt-1 mb-2">
-                <span class="fas fa-user-astronaut"></span>
-            </button>
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Doctor Center</h1>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>OPD</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Phone</th>
-                        <th>Sex</th>
-                        <th>Address</th>
-                        <th>Treat</th>
 
-                    </tr>
-                    </thead>
-                    <tbody>
+        <!-- Content Row -->
+        <div class="row">
 
-                    <?php
-                    include('../dbconnect.php');
-                    $result = $db->prepare("SELECT * FROM patient ORDER BY id DESC");
-                    $result->execute();
-                    for($i=0; $row = $result->fetch(); $i++){
-                    ?>
-
-                        <tr>
-                            <td>MC<?php echo $row['id']; ?></td>
-                            <td><?php echo $row['firstName']; ?></td>
-                            <td><?php echo $row['lastName']; ?></td>
-                            <td><?php echo $row['age']; ?></td>
-                            <td><?php echo $row['tel']; ?></td>
-                            <td><?php echo $row['sex']; ?></td>
-                            <td><?php echo $row['address']; ?></td>
-                            <td>
-                                <a class="btn btn-primary btn-sm" href="../treatment/index.php?id=<?php echo $row['id']; ?>">
-                                    <span class="fas fa-stethoscope"></span>
-                                </a>
-                            </td>
-                        </tr>
-
-
-
-                        <?php } ?>
-
-
-                    </tbody>
-                </table>
+            <!--  Patients  -->
+            <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href='../reception/index.php'">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Patients</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">View Patients</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-user-astronaut fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Doctors -->
+            <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href='../treatment/index.php'">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Doctors</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Treatments</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-stethoscope fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+        <!-- Content Row -->
     </div>
-
-</div>
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 
 
-<?php include "../layouts/footer.php"; ?>
+<?php include '../layouts/footer.php'; ?>

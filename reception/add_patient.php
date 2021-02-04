@@ -10,7 +10,6 @@ $sex = $_POST['sex'];
 $amount = $_POST['amount'];
 $address = $_POST['address'];
 $insurance = $_POST['insurance'];
-//$date = date('y-m-d');
 
 $query = $db->prepare("INSERT INTO patients(firstName,lastName,dob,sex,contact,insurance,address,amount) VALUES 
 (?,?,?,?,?,?,?,?)");
@@ -36,6 +35,5 @@ if ($query){
 }
 
 header("location: index.php");
-
 
 ?>

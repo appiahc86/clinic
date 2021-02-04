@@ -6,7 +6,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; <b>MULTI CLINIC</b> <?php echo date('Y'); ?></span>
         </div>
     </div>
 </footer>
@@ -105,7 +105,7 @@
 
 
         //display new opd Info
-        <?php   if ($_SESSION['opdNumber']){  ?>
+        <?php   if (!empty($_SESSION['opdNumber'])){  ?>
         $('#opdNumber').click();
        <?php  unset($_SESSION['opdNumber']); } ?>
 

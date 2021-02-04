@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('../dbconnect.php');
-$id = $_POST['id'];
+$patient_id = $_POST['patient_id'];
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $contact = $_POST['contact'];
@@ -20,11 +20,11 @@ $sql = "UPDATE patients SET
     sex = ?,
     address = ?,
     insurance = ?
-    WHERE id = ?
+    WHERE patient_id = ?
 ";
 
 $save = $db->prepare($sql);
-$save->execute([$firstName, $lastName, $contact, $dob, $sex, $address, $insurance, $id]);
+$save->execute([$firstName, $lastName, $contact, $dob, $sex, $address, $insurance, $patient_id]);
 
 if ($save){
     $_SESSION['success_msg'] = "Record Updated Successfully";
