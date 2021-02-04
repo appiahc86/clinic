@@ -15,7 +15,7 @@ if (!isset($_SESSION)){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Multi Clinic</title>
+    <title>MULTI-CLINIC</title>
 
     <!-- Custom fonts for this template-->
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@ if (!isset($_SESSION)){
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-hospital-symbol"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Multi Clinic</div>
+            <div class="sidebar-brand-text mx-3">MULTI-CLINIC</div>
         </a>
 
         <!-- Divider -->

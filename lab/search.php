@@ -13,7 +13,7 @@ if (!isset($_SESSION)){
 
      $query = $db->prepare(
          "SELECT patients.patient_id, patients.firstName, 
-    patients.lastName, treatments.treatment_id, treatments.test, treatments.test_results FROM treatments 
+    patients.lastName, treatments.treatment_id, treatments.test, treatments.test_results, treatments.test_fee FROM treatments 
     INNER JOIN patients ON treatments.patient_id = patients.patient_id WHERE treatments.patient_id = ? AND treatments.date = ? 
     AND treatments.test <> ?  LIMIT 1 ");
 
@@ -37,28 +37,36 @@ if (!isset($_SESSION)){
     <div class="row mb-2">
         <div class="col">
 
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th>OPD No</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Test</th>
-                        <th>Test Results</th>
-                    </tr>
+            <div class="card shadow p-3">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>OPD No</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Test</th>
+                            <th>Test Results</th>
+                            <th>Fee</th>
+                        </tr>
+                        </thead>
 
-                    <tr>
-                        <td>MC<?php echo $res['patient_id']; ?></td>
-                        <td><?php echo $res['firstName']; ?></td>
-                        <td><?php echo $res['lastName']; ?></td>
-                        <td><a href="" title="View Details" data-toggle="modal" data-target="#testModal">
-                            <?php echo mb_strimwidth($res['test'], 0, 35, '...') ?>
-                            </a>
-                        </td>
-                        <td><?php echo mb_strimwidth($res['test_results'], 0, 35, '...') ?> </td>
-                    </tr>
-                </table>
+
+                        <tr>
+                            <td>MC<?php echo $res['patient_id']; ?></td>
+                            <td><?php echo $res['firstName']; ?></td>
+                            <td><?php echo $res['lastName']; ?></td>
+                            <td><a href="" title="View Details" data-toggle="modal" data-target="#testModal">
+                                    <?php echo mb_strimwidth($res['test'], 0, 35, '...') ?>
+                                </a>
+                            </td>
+                            <td><?php echo mb_strimwidth($res['test_results'], 0, 35, '...') ?> </td>
+                            <td><?php echo number_format($res['test_fee'], 2); ?></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+
 
 
         </div>
@@ -71,6 +79,12 @@ if (!isset($_SESSION)){
             <form action="add_test_results.php" method="post" class="myform">
                 <input type="hidden" name="patient_id" value="<?php echo $res['patient_id']; ?>">
                 <input type="hidden" name="treatment_id" value="<?php echo $res['treatment_id'] ?>">
+                <div class="form-group">
+                    <label for="">Fee</label>
+                    <input type="number" name="fee" class="form-control"
+                           step="0.01" placeholder="Fee" min="0"
+                           value="<?php echo $res['test_fee'] ?>" autocomplete="off">
+                </div>
                 <div class="form-group">
                     <label for="results">Test Results</label>
                     <textarea name="result"
@@ -99,15 +113,14 @@ if (!isset($_SESSION)){
         <br><br>
         <div class="modal-content">
             <div class="modal-header">
+                <h5><b>Lab Test</b></h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times</span>
                 </button>
             </div>
 
             <div class="modal-body">
-
                 <textarea name="" id="" cols="30" rows="12" class="form-control" disabled><?php echo $res['test']; ?></textarea>
-
             </div>
 
         </div>

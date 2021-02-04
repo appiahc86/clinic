@@ -11,7 +11,7 @@ $res = $cannotDelete->fetch();
 
 if (!empty($res)){
     $_SESSION['error_msg'] = "Sorry, cannot remove this patient";
-    return  header("location: search.php");
+    return  header("location: index.php");
 
 }else{ //If patient has no medical records, delete it
     $sql = "DELETE FROM patients WHERE patient_id = ?";
@@ -24,12 +24,8 @@ if (!empty($res)){
         $_SESSION['error_msg'] = "Sorry! Error occurred";
     }
 
-    header("location: search.php");
+    header("location: index.php");
 }
-
-
-
-
 
 
 ?>

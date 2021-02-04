@@ -6,11 +6,15 @@ if (!isset($_SESSION)){
 require_once '../dbconnect.php';
 $patient_id = $_POST['patient_id'];
 $treatment_id = $_POST['treatment_id'];
+$test_fee = $_POST['fee'];
 $test_results = trim($_POST['result']);
 
-$query = $db->prepare("UPDATE treatments SET test_results = ? WHERE treatment_id = ?");
-$query->execute([$test_results, $treatment_id]);
+if (empty($test_fee)){
+    $test_fee = 0;
+}
 
+$query = $db->prepare("UPDATE treatments SET test_results = ?, test_fee = ? WHERE treatment_id = ?");
+$query->execute([$test_results, $test_fee, $treatment_id]);
 
 $patient_id = 'mc' . $patient_id;
 

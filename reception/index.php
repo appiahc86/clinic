@@ -11,13 +11,12 @@ function Age($dob){
 <button class="d-none" id="opdNumber"
         data-toggle="modal"
         data-target="#opd<?php echo !empty($_SESSION['opdNumber']) ? $_SESSION['opdNumber']['id'] : ''; ?>">
-
 </button>
-<!-- Begin Page Content -->
-<div class="container-fluid">
 
+<!-- Begin Page Content -->
+<div class="container-fluid mb-5">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Patients</h1>
+    <h1 class="h3 mb-2 text-gray-800"><b>O.P.D</b></h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -33,14 +32,14 @@ function Age($dob){
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="thead-dark">
                     <tr>
                         <th>OPD No</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Sex</th>
                         <th>Details</th>
-                        <th>Consult</th>
+                        <th>Consultation</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -437,14 +436,15 @@ function Age($dob){
                             </div>
 
                             <div class="form-group  col-md-4">
-                                <label for="amount">Amount</label>
+                                <label for="amount">Consultation Fee</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                            <b>₵</b>
                                         </div>
                                     </div>
-                                    <input type="number" class="form-control" step="0.01" name="amount" id="amount" required autocomplete="off">
+                                    <input type="number" class="form-control" step="0.01"
+                                           name="amount" id="amount" readonly value="<?php echo 40; ?>">
                                 </div>
                             </div>
 

@@ -39,45 +39,48 @@ if ($res == ""){
 
 <h3 class="text-center">Treatment Center</h3>
 
-<div class="container-fluid">
+<div class="container-fluid mb-2">
     <div class="row">
         <div class="col">
-            <div class="table-responsive">
-                <table class="table table-sm">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>OPD No</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Diagnosis</th>
-                        <th>Lab</th>
-                        <th>Test Results</th>
-                        <th>Prescription</th>
-                    </tr>
-                    </thead>
+            <div class="card shadow p-3">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>OPD No</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Age</th>
+                            <th>Diagnosis</th>
+                            <th>Lab</th>
+                            <th>Test Results</th>
+                            <th>Prescription</th>
+                        </tr>
+                        </thead>
 
-                    <tbody>
-                    <tr>
-                        <td>MC<?php echo $res['patient_id']; ?></td>
-                        <td><?php echo $res['firstName']; ?></td>
-                        <td><?php echo $res['lastName']; ?></td>
-                        <td><?php echo Age($res['dob']); ?></td>
-                        <td><?php echo mb_strimwidth($res['diagnosis'], 0, 20, '...') ?></td>
-                        <td><a href="" title="View Details" data-toggle="modal" data-target="#lab">
-                                <?php echo mb_strimwidth($res['test'], 0, 20, '...') ?>
-                            </a></td>
-                        <td><a href="" title="View Details" data-toggle="modal" data-target="#testResultsModal">
-                                <?php echo mb_strimwidth($res['test_results'], 0, 20, '...') ?>
-                            </a></td>
-                        <td><a href="" title="View Details" data-toggle="modal" data-target="#pharmacy">
-                                <?php echo mb_strimwidth($res['prescription'], 0, 20, '...') ?>
-                            </a></td>
-                    </tr>
-                    </tbody>
+                        <tbody>
+                        <tr>
+                            <td>MC<?php echo $res['patient_id']; ?></td>
+                            <td><?php echo $res['firstName']; ?></td>
+                            <td><?php echo $res['lastName']; ?></td>
+                            <td><?php echo Age($res['dob']); ?></td>
+                            <td><?php echo mb_strimwidth($res['diagnosis'], 0, 20, '...') ?></td>
+                            <td><a href="" title="View Details" data-toggle="modal" data-target="#lab">
+                                    <?php echo mb_strimwidth($res['test'], 0, 20, '...') ?>
+                                </a></td>
+                            <td><a href="" title="View Details" data-toggle="modal" data-target="#testResultsModal">
+                                    <?php echo mb_strimwidth($res['test_results'], 0, 20, '...') ?>
+                                </a></td>
+                            <td><a href="" title="View Details" data-toggle="modal" data-target="#pharmacy">
+                                    <?php echo mb_strimwidth($res['prescription'], 0, 20, '...') ?>
+                                </a></td>
+                        </tr>
+                        </tbody>
 
-                </table>
+                    </table>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
