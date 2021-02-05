@@ -13,9 +13,9 @@ if (!isset($_SESSION)){
 
      $query = $db->prepare(
          "SELECT patients.patient_id, patients.firstName, 
-    patients.lastName, treatments.treatment_id, treatments.test, treatments.test_results, treatments.test_fee FROM treatments 
+    patients.lastName, treatments.treatment_id, treatments.prescription, treatments.medicine_fee FROM treatments 
     INNER JOIN patients ON treatments.patient_id = patients.patient_id WHERE treatments.patient_id = ? AND treatments.date = ? 
-    AND treatments.test <> ?  LIMIT 1 ");
+    AND treatments.prescription <> ?  LIMIT 1 ");
 
      $query->execute([$search, $date, $empty_string]);
      $res = $query->fetch();
@@ -45,8 +45,7 @@ if (!isset($_SESSION)){
                             <th>OPD No</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Test</th>
-                            <th>Test Results</th>
+                            <th>Prescription</th>
                             <th>Price</th>
                         </tr>
                         </thead>
@@ -56,12 +55,11 @@ if (!isset($_SESSION)){
                             <td>MC<?php echo $res['patient_id']; ?></td>
                             <td><?php echo $res['firstName']; ?></td>
                             <td><?php echo $res['lastName']; ?></td>
-                            <td><a href="" title="View Details" data-toggle="modal" data-target="#testModal">
-                                    <?php echo mb_strimwidth($res['test'], 0, 35, '...') ?>
+                            <td><a href="" title="View Details" data-toggle="modal" data-target="#prescription">
+                                    <?php echo mb_strimwidth($res['prescription'], 0, 35, '...') ?>
                                 </a>
                             </td>
-                            <td><?php echo mb_strimwidth($res['test_results'], 0, 35, '...') ?> </td>
-                            <td><?php echo number_format($res['test_fee'], 2); ?></td>
+                            <td><?php echo number_format($res['medicine_fee'], 2); ?></td>
                         </tr>
                     </table>
                 </div>
@@ -76,27 +74,19 @@ if (!isset($_SESSION)){
     <!--  Results Form  -->
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <form action="add_test_results.php" method="post" class="myform">
+            <form action="add_amount.php" method="post" class="myform">
                 <input type="hidden" name="patient_id" value="<?php echo $res['patient_id']; ?>">
                 <input type="hidden" name="treatment_id" value="<?php echo $res['treatment_id'] ?>">
                 <div class="form-group">
                     <label for="">Price</label>
                     <input type="number" name="fee" class="form-control"
                            step="0.01" placeholder="Enter Amount" min="0"
-                           value="<?php echo $res['test_fee'] ?>" autocomplete="off">
+                           value="<?php echo $res['medicine_fee'] ?>" autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <label for="results">Test Results</label>
-                    <textarea name="result"
-                              id="results"
-                              cols="10"
-                              class="form-control"
-                              spellcheck="false"
-                              rows="10"><?php echo $res['test_results']; ?></textarea>
-                </div>
+
                 <div class="form-group">
                     <button type="submit" name="submit" class="btn btn-block btn-primary mybtn">
-                        <?php echo trim($res['test_results']) == "" ? "ADD" : "UPDATE"; ?>
+                        <?php echo trim($res['medicine_fee']) == 0 ? "Save" : "UPDATE"; ?>
                     </button>
                 </div>
             </form>
@@ -107,20 +97,20 @@ if (!isset($_SESSION)){
 
 
 <!--  Test Modal -->
-<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="prescription" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <br>
     <div class="modal-dialog" role="document">
         <br><br>
         <div class="modal-content">
             <div class="modal-header">
-                <h5><b>Lab Test</b></h5>
+                <h5><b>Prescription</b></h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times</span>
                 </button>
             </div>
 
             <div class="modal-body">
-                <textarea name="" id="" cols="30" rows="12" class="form-control" disabled><?php echo $res['test']; ?></textarea>
+                <textarea name="" id="" cols="30" rows="12" class="form-control" disabled><?php echo $res['prescription']; ?></textarea>
             </div>
 
         </div>

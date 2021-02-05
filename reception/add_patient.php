@@ -42,9 +42,6 @@ if ($db->commit()){
     $_SESSION['error_msg'] = "Sorry record was not saved";
 }
 
-
-
-
 header("location: index.php");
 
 ?>

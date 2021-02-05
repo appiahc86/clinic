@@ -8,8 +8,6 @@ function Age($dob){
 
 <?php include "../layouts/header.php"; ?>
 
-
-
 <!-- Begin Page Content -->
 <div class="container-fluid mb-5">
     <!-- Page Heading -->
@@ -47,12 +45,6 @@ function Age($dob){
                                 <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#viewDetails<?php echo $row['patient_id']; ?>"><span class="fas fa-eye"></span>
                                 </a>
                             </td>
-
-
-
-
-
-
 
                         <!-- View Details Modal -->
                         <div class="modal fade" id="viewDetails<?php echo $row['patient_id']; ?>" tabindex="-1"

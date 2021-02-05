@@ -16,6 +16,7 @@ $search = str_replace(" ", "", $search);
 $search = str_replace("mc", "", $search);
 $date = date('y-m-d');
 
+
 $query = $db->prepare(
     "SELECT patients.patient_id, patients.firstName, 
     patients.lastName, patients.dob, treatments.treatment_id, treatments.diagnosis, treatments.prescription,
@@ -25,6 +26,7 @@ $query = $db->prepare(
 
 $query->execute([$search, $date]);
 $res = $query->fetch();
+
 
 if ($res == ""){
     $_SESSION['error_msg'] = "Sorry, no record found";

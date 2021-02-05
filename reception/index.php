@@ -48,6 +48,14 @@ function Age($dob){
 
                     <?php
                     include('../dbconnect.php');
+
+                    //Get consultaion fee
+                    $consultation_fee_query = $db->prepare("SELECT * FROM settings LIMIT 1");
+                    $consultation_fee_query->execute();
+                    $consultation_fee = $consultation_fee_query->fetch();
+
+
+                    //Get all patients
                     $results = $db->prepare("SELECT * FROM patients");
                     $results->execute();
                     for($i=0; $row = $results->fetch(); $i++){
@@ -63,7 +71,9 @@ function Age($dob){
                             </a>
                         </td>
                         <td class="text-center">
-                            <a class="btn btn-info btn-sm" href="consult.php?patient_id=<?php echo $row['patient_id']; ?>">
+                            <a class="btn btn-info btn-sm"
+                               data-toggle="modal" data-target="#consult<?php echo $row['patient_id']; ?>"
+                               href="">
                                 <span class="fas fa-atom"></span>
                             </a>
                         </td>
@@ -228,9 +238,6 @@ function Age($dob){
 
                                     <div class="modal-body">
 
-
-
-
                                     <div>
                                         <h6><b>OPD No: </b> <span class="text-danger" style="float: right;"><b><?php echo 'MC' . $row['patient_id']; ?></b></span></h6>
                                     </div>
@@ -248,7 +255,7 @@ function Age($dob){
                                         <hr>
 
                                         <div>
-                                            <h6><b>Age:</b> <span style="float: right;"><?php echo Age($row['lastName']); ?></span></h6>
+                                            <h6><b>Age:</b> <span style="float: right;"><?php echo Age($row['dob']); ?></span></h6>
                                         </div>
                                         <hr>
 
@@ -285,7 +292,7 @@ function Age($dob){
 
 
 
-                               <!--   Modal for Deleting Users-->
+                               <!--   Delete Modal-->
                         <div class="modal fade" id="del<?php echo $row['patient_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <br>
                             <div class="modal-dialog" role="document">
@@ -315,6 +322,48 @@ function Age($dob){
                         </div> <!-- Delete Modal -->
 
 
+                           <!-- consultation modal -->                                                                                                                                                                                     <!--   Modal for Deleting Users-->
+                        <div class="modal fade" id="consult<?php echo $row['patient_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <br>
+                            <div class="modal-dialog" role="document">
+                                <br><br>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel"><span>Consult A Doctor</span></h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <div>
+                                            <h6><b>First Name:</b> <span style="float: right;"><?php echo $row['firstName']; ?></span></h6>
+                                        </div>
+                                        <hr>
+
+                                        <div>
+                                            <h6><b>Last Name:</b> <span style="float: right;"><?php echo $row['lastName']; ?></span></h6>
+                                        </div>
+                                        <hr>
+
+                                        <form action="consult.php" method="post" class="myform">
+                                            <input type="hidden" name="patient_id" value="<?php echo $row['patient_id']; ?>">
+                                            <div class="form-group">
+                                                <label for=""><b>Consultation Fee</b></label>
+                                                    <input type="number" name="consultation_fee" step="0.01" class="form-control"
+                                                           value="<?php echo $consultation_fee['consultation_fee']; ?>" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" value="Proceed" class="btn btn-primary btn-block mybtn">
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div> <!-- ./consultation moda -->
 
 
                         <?php
@@ -444,7 +493,7 @@ function Age($dob){
                                         </div>
                                     </div>
                                     <input type="number" class="form-control" step="0.01"
-                                           name="amount" id="amount" readonly value="<?php echo 40; ?>">
+                                           name="amount" id="amount" readonly value="<?php echo $consultation_fee['consultation_fee']; ?>">
                                 </div>
                             </div>
 
@@ -523,11 +572,7 @@ function Age($dob){
 
                                 <tr>
                                     <th>Age</th>
-                                    <?php
-                                    $yrFromDb = date('Y', strtotime($_SESSION['opdNumber']['dob']));
-                                    $currYr = date('Y', strtotime(date('Y')));
-                                    ?>
-                                    <td><?php echo $currYr - $yrFromDb; ?></td>
+                                    <td><?php echo Age($_SESSION['opdNumber']['dob']); ?></td>
                                 </tr>
 
                                 <tr>
@@ -602,11 +647,7 @@ function Age($dob){
 
                         <tr>
                             <th>Age</th>
-                            <?php
-                            $yrFromDatabase = date('Y', strtotime($last['dob']));
-                            $currentYr = date('Y', strtotime(date('Y')));
-                            ?>
-                            <td><?php echo $currentYr - $yrFromDatabase; ?></td>
+                            <td><?php echo Age($last['dob']); ?></td>
                         </tr>
 
                         <tr>
