@@ -147,7 +147,7 @@ if (!empty($res)){
 
                     <div class="form-group">
                         <input type="password" value="<?php echo $password; ?>" id="password" placeholder="Password"
-                               name="password" class="form-control" required>
+                               name="password" class="form-control" required autocomplete="off">
                     </div>
 
                     <div class="form-group form-check">

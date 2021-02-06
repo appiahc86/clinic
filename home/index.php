@@ -19,7 +19,7 @@ include '../layouts/header.php';
         switch($_SESSION['role']){
             case 1: ?>
                 <!-- Lab -->
-                <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href=''">
+                <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href='../admin/users.php'">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">

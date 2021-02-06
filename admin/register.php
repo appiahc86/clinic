@@ -213,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <button type="submit" name="submit" class="btn btn-primary mybtn font-weight-bold">
                                     Register
                                 </button>
-                                <span><a href="index.php" class="btn btn-secondary">Back</a></span>
+                                <span><a href="users.php" class="btn btn-secondary">Back</a></span>
                             </div>
                         </div>
 

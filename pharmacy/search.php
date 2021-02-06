@@ -4,6 +4,12 @@ if ($_SESSION['role'] != 5){
     header("location: ../home/index.php");
 }
 
+function Age($dob){
+    $yrFromDatabase = date('Y', strtotime($dob));
+    $currentYr = date('Y', strtotime(date('Y')));
+    return  $currentYr - $yrFromDatabase;
+}
+
      require_once '../dbconnect.php';
 
      $search = strtolower($_GET['patient_id']);
@@ -14,7 +20,7 @@ if ($_SESSION['role'] != 5){
 
      $query = $db->prepare(
          "SELECT patients.patient_id, patients.firstName, 
-    patients.lastName, treatments.treatment_id, treatments.prescription, treatments.medicine_fee FROM treatments 
+    patients.lastName, patients.dob, treatments.treatment_id, treatments.prescription, treatments.medicine_fee FROM treatments 
     INNER JOIN patients ON treatments.patient_id = patients.patient_id WHERE treatments.patient_id = ? AND treatments.date = ? 
     AND treatments.prescription <> ?  LIMIT 1 ");
 
@@ -46,6 +52,7 @@ if ($_SESSION['role'] != 5){
                             <th>OPD No</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+                            <th>Age</th>
                             <th>Prescription</th>
                             <th>Price</th>
                         </tr>
@@ -56,6 +63,7 @@ if ($_SESSION['role'] != 5){
                             <td>MC<?php echo $res['patient_id']; ?></td>
                             <td><?php echo $res['firstName']; ?></td>
                             <td><?php echo $res['lastName']; ?></td>
+                            <td><?php echo Age($res['dob']);  ?></td>
                             <td><a href="" title="View Details" data-toggle="modal" data-target="#prescription">
                                     <?php echo mb_strimwidth($res['prescription'], 0, 35, '...') ?>
                                 </a>
