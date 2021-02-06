@@ -1,13 +1,17 @@
 <?php
-session_start();
+include "../auth.php";
+if ($_SESSION['role'] != 2){
+    header("location: ../home/index.php");
+}
 include('../dbconnect.php');
 
 $patient_id = $_POST['patient_id'];
 $treatment_id = $_POST['treatment_id'];
 $prescription = trim($_POST['prescription']);
+$user_id = $_SESSION['user_id'];
 
-$query = $db->prepare("UPDATE treatments SET prescription = ? WHERE treatment_id = ?"); //will add doctor id later
-$query->execute([$prescription, $treatment_id]);
+$query = $db->prepare("UPDATE treatments SET user_id =?, prescription = ? WHERE treatment_id = ?"); //will add doctor id later
+$query->execute([$user_id, $prescription, $treatment_id]);
 
 
 if ($query){

@@ -1,3 +1,56 @@
+<?php
+session_start();
+
+if (!empty($_SESSION['username'])){
+    header("location: ../home/index.php");
+}
+
+include "../dbconnect.php";
+
+$username = "";
+$password = "";
+$errors = [];
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $username = strtolower(trim($_POST['username']));
+    $password = $_POST['password'];
+    $deleted = false;
+
+$query = $db->prepare("SELECT * FROM users WHERE username = ? And deleted = ? LIMIT 1");
+$query->execute([$username, $deleted]);
+$res = $query->fetch();
+
+if (!empty($res)){
+    if (password_verify($password, $res['password'])){ //if password is correct
+      if ($res['password_reset'] == false){ //if its a new user redirect to reset password page
+          $_SESSION['username'] = $res['username'];
+          $_SESSION['password'] = $res['password'];
+          $_SESSION['password_reset'] = "Please you must create a new password";
+          header("location: new_password.php");
+      }else{
+          $_SESSION['firstName'] = $res['firstName'];
+          $_SESSION['lastName'] = $res['lastName'];
+          $_SESSION['role'] = $res['user_role'];
+          $_SESSION['password'] = $res['password'];
+          $_SESSION['username'] = $res['username'];
+          $_SESSION['user_id'] = $res['user_id'];
+
+          //Redirect to home page
+          header("location: index.php");
+
+      }
+    }else{ //if password does not match
+        array_push($errors, "Sorry, incorrect password");
+    }
+}else{ //if user is not found
+    array_push($errors, "Sorry, this user does not exist");
+}
+
+} //if submit button is clicked
+
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -70,18 +123,30 @@
 
             <div class="card shadow-lg p-5">
 
-                <div class="alert alert-danger">
-                    <li>Sorry!!, Username or password is incorrect</li>
-                </div>
 
-                <form action="" method="post" class="myform">
+                <?php  //Display errors
+                if (count($errors) > 0){ ?>
+
+                    <div class="alert alert-danger">
+
+                        <?php
+                        foreach ($errors as $error) { ?>
+                            <li><?php echo $error; ?></li>
+                        <?php  } ?>
+
+                    </div>
+
+                <?php } ?>
+
+                <form action="#" method="post" class="myform">
                     <div class="form-group">
-                        <input type="text" value="" placeholder="Username" name="username" class="form-control"
+                        <input type="text" value="<?php echo $username; ?>" placeholder="Username"
+                               name="username" class="form-control"
                                autocomplete="off" autofocus required>
                     </div>
 
                     <div class="form-group">
-                        <input type="password" value="" id="password" placeholder="Password"
+                        <input type="password" value="<?php echo $password; ?>" id="password" placeholder="Password"
                                name="password" class="form-control" required>
                     </div>
 
@@ -120,6 +185,16 @@
                 }
             }
         }
+
+        //success messages
+        <?php
+        if (!empty($_SESSION['success_msg'])){ ?>
+
+        toastr.success('<?php echo $_SESSION['success_msg']; ?>'); //Success messages
+
+        <?php
+        unset($_SESSION['success_msg']);
+        } ?>
 
         //    Show/Hide password
         const password = document.querySelector("#password");

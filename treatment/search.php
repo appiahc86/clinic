@@ -1,6 +1,7 @@
 <?php
-if (!isset($_SESSION)){
-    session_start();
+include "../auth.php";
+if ($_SESSION['role'] != 2){
+    header("location: ../home/index.php");
 }
 
 function Age($dob){

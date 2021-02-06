@@ -1,5 +1,12 @@
+<?php
 
-<?php include '../layouts/header.php'; ?>
+include "../auth.php";
+if ($_SESSION['role'] != 2){
+    header("location: ../home/index.php");
+}
+include '../layouts/header.php';
+
+?>
 
 <!-- Search -->
 <div class="container">

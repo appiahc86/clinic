@@ -1,5 +1,8 @@
 <?php
-session_start();
+include "../auth.php";
+if ($_SESSION['role'] != 4){
+    header("location: ../home/index.php");
+}
 include('../dbconnect.php');
 
 $patient_id = $_POST['patient_id'];

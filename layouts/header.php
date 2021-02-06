@@ -1,8 +1,3 @@
-<?php
-if (!isset($_SESSION)){
-    session_start();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -145,30 +140,24 @@ if (!isset($_SESSION)){
                         </div>
                     </li>
 
-
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                            <span class="fas fa-user-circle"></span>
+                            <span class="mr-2 d-none d-md-inline" style="color: #4e4c4c;">
+                                Welcome <?php echo ucfirst(strtolower($_SESSION['firstName'])); ?>
+                            </span>
+                            <span class="fas fa-user-circle" style="font-size: 24px;"></span>
                         </a>
                         <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in text-dark" aria-labelledby="userDropdown">
+
+                            <a class="dropdown-item" href="../home/reset_password.php" style="font-size: 15px;">
+                                <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-600"></i>
+                                Reset Password
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            <a class="dropdown-item" href="../home/logout.php" style="font-size: 15px;">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-600"></i>
                                 Logout
                             </a>
                         </div>

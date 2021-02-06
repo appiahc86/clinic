@@ -1,4 +1,9 @@
 <?php
+include "../auth.php";
+if ($_SESSION['role'] != 4){
+    header("location: ../home/index.php");
+}
+
 function Age($dob){
     $yrFromDatabase = date('Y', strtotime($dob));
     $currentYr = date('Y', strtotime(date('Y')));

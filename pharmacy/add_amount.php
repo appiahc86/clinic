@@ -1,6 +1,7 @@
 <?php
-if (!isset($_SESSION)){
-    session_start();
+include "../auth.php";
+if ($_SESSION['role'] != 5){
+    header("location: ../home/index.php");
 }
 
 require_once '../dbconnect.php';

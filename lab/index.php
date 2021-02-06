@@ -1,3 +1,11 @@
+<?php
+include "../auth.php";
+if ($_SESSION['role'] != 3){
+    header("location: ../home/index.php");
+}
+
+
+?>
 <?php include '../layouts/header.php'; ?>
 
     <!-- Search -->

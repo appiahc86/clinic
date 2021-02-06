@@ -1,5 +1,8 @@
 <?php
-session_start();
+include "../auth.php";
+if ($_SESSION['role'] != 4){
+    header("location: ../home/index.php");
+}
 
 include('../dbconnect.php');
 $firstName = $_POST['firstName'];
@@ -13,15 +16,15 @@ $insurance = $_POST['insurance'];
 
 $db->beginTransaction();
 
-$query = $db->prepare("INSERT INTO patients(firstName,lastName,dob,sex,contact,insurance,address,amount) VALUES 
-(?,?,?,?,?,?,?,?)");
+$query = $db->prepare("INSERT INTO patients(firstName,lastName,dob,sex,contact,insurance,address) VALUES 
+(?,?,?,?,?,?,?)");
 
-$query->execute([ $firstName, $lastName, $dob, $sex, $contact, $insurance, $address, $amount]);
+$query->execute([ $firstName, $lastName, $dob, $sex, $contact, $insurance, $address]);
 
 $lastInsertId = $db->lastInsertId();
 
-$consultQuery = $db->prepare("INSERT INTO treatments (patient_id) VALUES (?)");
-$consultQuery->execute([$lastInsertId]);
+$consultQuery = $db->prepare("INSERT INTO treatments (patient_id, consultation_fee) VALUES (?,?)");
+$consultQuery->execute([$lastInsertId, $amount]);
 
 if ($db->commit()){
 
