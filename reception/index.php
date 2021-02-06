@@ -315,7 +315,7 @@ function Age($dob){
                                     </div>
 
                                     <div class="modal-footer">
-                                        <form action="delete_patient.php" method="post" class="myform">
+                                        <form action="delete_user.php" method="post" class="myform">
                                           <input type="hidden" name="patient_id" value="<?php echo $row['patient_id']; ?>">
                                         <button type="submit" class="btn btn-sm btn-danger mybtn"><i class="fas fa-trash-alt"></i> Delete</button>
                                         <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>

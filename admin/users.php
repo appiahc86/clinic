@@ -32,7 +32,11 @@ include "../layouts/header.php";
 
                         <tbody>
                             <?php
-                        while ($row = $users->fetch()){ ?>
+                        while ($row = $users->fetch()){
+                                if ($row['username'] == "developer" || $row['username'] == $_SESSION['username']){
+                                    continue;
+                                }
+                            ?>
                             <tr>
                                 <td><?php echo ucfirst(strtolower($row['firstName'])); ?></td>
                                 <td><?php echo ucfirst(strtolower($row['lastName'])); ?></td>
@@ -89,8 +93,8 @@ include "../layouts/header.php";
                                         </div>
 
                                         <div class="modal-footer">
-                                            <form action="delete_patient.php" method="post" class="myform">
-                                                <input type="hidden" name="patient_id" value="<?php echo $row['user_id']; ?>">
+                                            <form action="delete_user.php" method="post" class="myform">
+                                                <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
                                                 <button type="submit" class="btn btn-sm btn-danger mybtn"><i class="fas fa-trash-alt"></i> Delete</button>
                                                 <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                             </form>
@@ -102,7 +106,8 @@ include "../layouts/header.php";
 
 
                                    <!--  Edit Modal -->
-                            <div class="modal fade" id="edit<?php echo $row['user_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="edit<?php echo $row['user_id']; ?>" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <br>
                                 <div class="modal-dialog" role="document">
                                     <br><br>
@@ -115,13 +120,68 @@ include "../layouts/header.php";
                                         </div>
 
                                         <div class="modal-body">
-                                            <p>Are you sure you want to delete this user?</p>
+                                                            <!--  Form  -->
+                                            <form action="edit_user.php" method="post" class="myform">
+                                                <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
+                                                <div class="form-group">
+                                                    <label for="">First Name</label>
+                                                        <input type="text" name="firstName" id="" minlength="3" autocomplete="off"
+                                                               class="form-control" value="<?php echo $row['firstName'];?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Last Name</label>
+                                                        <input type="text" name="lastName" id="" minlength="3" autocomplete="off"
+                                                               class="form-control" value="<?php echo $row['lastName'];?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Role</label>
+                                                    <select name="role" id="" class="form-control" required>
+                                                        <option value="<?php echo $row['user_role']; ?>">
+                                                          <?php
+                                                                switch ($row['user_role']){
+                                                                    case 1:
+                                                                        echo "Admin";
+                                                                        break;
+                                                                    case 2:
+                                                                        echo "Doctor";
+                                                                        break;
+                                                                    case 3:
+                                                                        echo "Lab Technician";
+                                                                        break;
+                                                                    case 4:
+                                                                        echo "Receptionist";
+                                                                        break;
+                                                                    default:
+                                                                        echo "Pharmacist";
+                                                                }
+                                                                ?>
+                                                        </option>
+
+                                                <?php
+                                                    $roles = ['Admin'=>1, 'Doctor'=>2, 'Lab Technician'=>3, 'Receptionist'=>4, 'Pharmacist'=>5];
+                                                    foreach ($roles as $role_key => $role_value){
+                                                        if ($row['user_role'] == $role_value) continue; ?>
+                                                        <option value="<?php echo $role_value; ?>"><?php echo $role_key; ?></option>
+                                                   <?php } ?>
+
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="">Password</label>
+                                                    <input type="password" name="password" class="form-control" minlength="6" autocomplete="off">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary mybtn">Update</button>
+                                                    <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </form>
                                         </div>
 
                                     </div>
                                 </div>
                             </div> <!-- ./edit Modal -->
-
 
                        <?php } ?>
 
