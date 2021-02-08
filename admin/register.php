@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                        required
                                        autocomplete="off"
                                        value="<?php echo $username; ?>"
-                                       onkeypress="return "
+                                     
                                 >
 
                             </div>

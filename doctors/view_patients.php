@@ -47,9 +47,10 @@ function Age($dob){
                                 <td>MC<?php echo $row['patient_id']; ?></td>
                                 <td><?php echo $row['firstName']; ?></td>
                                 <td><?php echo $row['lastName']; ?></td>
-                                <td><?php echo $row['sex']; ?></td>
+                                <td><?php echo ucfirst($row['sex']); ?></td>
                                 <td class="text-center">
-                                    <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#viewDetails<?php echo $row['patient_id']; ?>"><span class="fas fa-eye"></span>
+                                    <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#viewDetails<?php echo $row['patient_id']; ?>">
+                                        <span class="fas fa-eye"></span>
                                     </a>
                                 </td>
 
@@ -91,12 +92,12 @@ function Age($dob){
                                                 <hr>
 
                                                 <div>
-                                                    <h6><b>Age:</b> <span style="float: right;"><?php echo Age($row['lastName']); ?></span></h6>
+                                                    <h6><b>Age:</b> <span style="float: right;"><?php echo Age($row['dob']); ?></span></h6>
                                                 </div>
                                                 <hr>
 
                                                 <div>
-                                                    <h6><b>Sex:</b> <span style="float: right;"><?php echo $row['sex']; ?></span></h6>
+                                                    <h6><b>Sex:</b> <span style="float: right;"><?php echo ucfirst($row['sex']); ?></span></h6>
                                                 </div>
                                                 <hr>
 

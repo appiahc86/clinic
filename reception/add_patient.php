@@ -5,8 +5,8 @@ if ($_SESSION['role'] != 4){
 }
 
 include('../dbconnect.php');
-$firstName = $_POST['firstName'];
-$lastName = $_POST['lastName'];
+$firstName = ucwords(strtolower($_POST['firstName']));
+$lastName = ucwords(strtolower($_POST['lastName']));
 $contact = $_POST['contact'];
 $dob = $_POST['dob'];
 $sex = $_POST['sex'];
@@ -38,6 +38,7 @@ if ($db->commit()){
         'sex' =>$sex,
         'contact' =>$contact,
         'address' =>$address,
+        'insurance' => $insurance,
         'id' => $lastInsertId
     ];
 

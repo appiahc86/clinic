@@ -18,7 +18,7 @@ include '../layouts/header.php';
       <?php
         switch($_SESSION['role']){
             case 1: ?>
-                <!-- Lab -->
+                <!-- Admin -->
                 <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href='../admin/users.php'">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
@@ -35,8 +35,8 @@ include '../layouts/header.php';
                     </div>
                 </div>
 
-                <!-- Lab -->
-                <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href=''">
+                <!--  -->
+                <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href='../admin/settings.php'">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
@@ -105,9 +105,25 @@ include '../layouts/header.php';
                     </div>
                 </div>
             </div>
+
+            <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href='reset_password.php'">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Password</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">Reset Password</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-lock fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <?php break; ?>
 
-        <?php    case 4: ?> <!-- For Lab Receptionist -->
+        <?php    case 4: ?> <!-- For Receptionist -->
             <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href='../reception/index.php'">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
@@ -117,7 +133,23 @@ include '../layouts/header.php';
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">Manage Patients</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-stethoscope fa-2x text-gray-300"></i>
+                                <i class="fas fa-user-astronaut fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-md-6 mb-2" onclick="window.location.href='../reception/today_patients.php'">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Today's Patients</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">View Today's Visitors</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-user-friends fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>

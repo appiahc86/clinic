@@ -109,7 +109,7 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar navbar-expand topbar mb-4 static-top shadow-lg">
 
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -144,7 +144,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-md-inline" style="color: #4e4c4c;">
-                                Welcome <?php echo ucfirst(strtolower($_SESSION['firstName'])); ?>
+                                Welcome! <b><?php echo ucfirst(strtolower($_SESSION['firstName'])); ?></b>
                             </span>
                             <span class="fas fa-user-circle" style="font-size: 24px;"></span>
                         </a>

@@ -3,9 +3,9 @@
 <!-- End of Main Content -->
 
 <!-- Footer -->
-<footer class="sticky-footer bg-white">
+<footer class="sticky-footer bg-white shadow-lg" style="padding: 15px !important;">
     <div class="container my-auto">
-        <div class="copyright text-center my-auto">
+        <div class="copyright text-center my-auto" style="font-size: 1em;">
             <span>Copyright &copy; <b>MULTI-CLINIC</b> <?php echo date('Y'); ?></span>
         </div>
     </div>

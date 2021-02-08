@@ -24,7 +24,7 @@ function Age($dob){
     <h1 class="h3 mb-2 text-gray-800"><b>O.P.D</b></h1>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
+        <div class="card-header">
             <button class="text-decoration-none btn btn-primary btn-sm mt-1 mb-2" data-toggle="modal" data-target="#addPatient">
                 <span class="fas fa-user-astronaut"></span>
                 Add A New Patient
@@ -36,17 +36,17 @@ function Age($dob){
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover table-sm" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover table-striped table-sm" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-dark">
                     <tr>
                         <th>OPD No</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Sex</th>
-                        <th>Details</th>
-                        <th>Consultation</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th class="text-center">Details</th>
+                        <th class="text-center">Consultation</th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -67,10 +67,10 @@ function Age($dob){
                     ?>
 
                     <tr>
-                        <td>MC<?php echo $row['patient_id']; ?></td>
+                        <td><b>MC<?php echo $row['patient_id']; ?></b></td>
                         <td><?php echo $row['firstName']; ?></td>
                         <td><?php echo $row['lastName']; ?></td>
-                        <td><?php echo $row['sex']; ?></td>
+                        <td><?php echo ucfirst($row['sex']); ?></td>
                         <td class="text-center">
                             <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#viewDetails<?php echo $row['patient_id']; ?>"><span class="fas fa-eye"></span>
                             </a>
@@ -87,7 +87,7 @@ function Age($dob){
                                 <span class="fas fa-edit"></span>
                             </a>
                         </td class="text-center">
-                        <td>
+                        <td class="text-center">
                             <a class="btn btn-danger btn-sm" href="" data-toggle="modal" data-target="#del<?php echo $row['patient_id']; ?>">
                                 <span class="fas fa-trash-alt"></span>
                             </a>
@@ -265,7 +265,7 @@ function Age($dob){
                                         <hr>
 
                                         <div>
-                                            <h6><b>Sex:</b> <span style="float: right;"><?php echo $row['sex']; ?></span></h6>
+                                            <h6><b>Sex:</b> <span style="float: right;"><?php echo ucfirst($row['sex']); ?></span></h6>
                                         </div>
                                         <hr>
 
@@ -315,7 +315,7 @@ function Age($dob){
                                     </div>
 
                                     <div class="modal-footer">
-                                        <form action="delete_user.php" method="post" class="myform">
+                                        <form action="delete_patient.php" method="post" class="myform">
                                           <input type="hidden" name="patient_id" value="<?php echo $row['patient_id']; ?>">
                                         <button type="submit" class="btn btn-sm btn-danger mybtn"><i class="fas fa-trash-alt"></i> Delete</button>
                                         <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -582,7 +582,12 @@ function Age($dob){
 
                                 <tr>
                                     <th>Sex</th>
-                                    <td><?php echo $_SESSION['opdNumber']['sex']; ?></td>
+                                    <td><?php echo ucfirst($_SESSION['opdNumber']['sex']); ?></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Insurance No</th>
+                                    <td><?php echo ucfirst($_SESSION['opdNumber']['insurance']); ?></td>
                                 </tr>
 
                                 <tr>
@@ -631,46 +636,58 @@ function Age($dob){
                 $last = $lastRecord->fetch();
                 ?>
 
-
                 <div class="table-responsive">
 
-                    <table class="table">
-                        <tr>
-                            <th>OPD No</th>
-                            <td class="text-danger"><?php echo 'MC' . $last['patient_id']; ?></td>
-                        </tr>
+                 <?php if (!empty($last)){ ?>
 
-                        <tr>
-                            <th>First Name</th>
-                            <td><?php echo $last['firstName']; ?></td>
-                        </tr>
+                     <table class="table">
+                         <tr>
+                             <th>OPD No</th>
+                             <td class="text-danger"><?php echo 'MC' . $last['patient_id']; ?></td>
+                         </tr>
 
-                        <tr>
-                            <th>Last Name</th>
-                            <td><?php echo $last['lastName']; ?></td>
-                        </tr>
+                         <tr>
+                             <th>First Name</th>
+                             <td><?php echo $last['firstName']; ?></td>
+                         </tr>
 
-                        <tr>
-                            <th>Age</th>
-                            <td><?php echo Age($last['dob']); ?></td>
-                        </tr>
+                         <tr>
+                             <th>Last Name</th>
+                             <td><?php echo $last['lastName']; ?></td>
+                         </tr>
 
-                        <tr>
-                            <th>Sex</th>
-                            <td><?php echo $last['sex']; ?></td>
-                        </tr>
+                         <tr>
+                             <th>Age</th>
+                             <td><?php echo Age($last['dob']); ?></td>
+                         </tr>
 
-                        <tr>
-                            <th>Contact</th>
-                            <td><?php echo $last['contact']; ?></td>
-                        </tr>
+                         <tr>
+                             <th>Sex</th>
+                             <td><?php echo ucfirst($last['sex']); ?></td>
+                         </tr>
 
-                        <tr>
-                            <th>Address</th>
-                            <td><?php echo $last['address']; ?></td>
-                        </tr>
+                         <tr>
+                             <th>Insurance No</th>
+                             <td><?php echo ucfirst($last['insurance']); ?></td>
+                         </tr>
 
-                    </table>
+                         <tr>
+                             <th>Contact</th>
+                             <td><?php echo $last['contact']; ?></td>
+                         </tr>
+
+                         <tr>
+                             <th>Address</th>
+                             <td><?php echo $last['address']; ?></td>
+                         </tr>
+
+                     </table>
+
+                <?php }else{
+
+                     echo "<h3 class='text-center text-danger'>No Record Found</h3>";
+
+                 } ?>
 
                 </div>
 
