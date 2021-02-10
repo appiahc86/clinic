@@ -24,7 +24,7 @@ function Age($dob){
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-sm" id="dataTable">
+                        <table class="table table-bordered table-hover table-sm table-striped" id="dataTable">
                             <thead class="thead-dark">
                             <tr>
                                 <th>OPD No</th>
@@ -32,6 +32,7 @@ function Age($dob){
                                 <th>Last Name</th>
                                 <th>Sex</th>
                                 <th>Details</th>
+                                <th>Med.History</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,11 +49,18 @@ function Age($dob){
                                 <td><?php echo $row['firstName']; ?></td>
                                 <td><?php echo $row['lastName']; ?></td>
                                 <td><?php echo ucfirst($row['sex']); ?></td>
-                                <td class="text-center">
+                                <td style="width: 50px;" class="text-center">
                                     <a href="" class="btn btn-sm btn-success" data-toggle="modal" data-target="#viewDetails<?php echo $row['patient_id']; ?>">
                                         <span class="fas fa-eye"></span>
                                     </a>
                                 </td>
+                                <td style="width: 50px;" class="text-center">
+                                    <a href="med_history.php?patient_id=<?php echo $row['patient_id']; ?>&firstName=<?php echo $row['firstName']; ?>&lastName=<?php echo $row['lastName']; ?>&dob=<?php echo $row['dob']; ?>"
+                                       class="btn btn-sm btn-primary">
+                                        <span class="fas fa-eye"></span>
+                                    </a>
+                                </td>
+
 
                                 <!-- View Details Modal -->
                                 <div class="modal fade" id="viewDetails<?php echo $row['patient_id']; ?>" tabindex="-1"
@@ -123,7 +131,6 @@ function Age($dob){
                                         </div>
                                     </div>
                                 </div> <!-- ./View Details Modal -->
-
 
 
                                 <?php

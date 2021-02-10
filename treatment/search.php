@@ -45,6 +45,7 @@ if ($res == ""){
 <div class="container-fluid mb-2">
     <div class="row">
         <div class="col">
+            <a class="btn btn-primary btn-sm mb-2" href="../doctors/med_history.php?patient_id=<?php echo $res['patient_id'];?>&firstName=<?php echo $res['firstName']; ?>&lastName=<?php echo $res['lastName']; ?>&dob=<?php echo $res['dob']; ?>" >View History</a>
             <div class="card shadow p-3">
                 <div class="table-responsive">
                     <table class="table table-sm">
@@ -88,7 +89,7 @@ if ($res == ""){
     </div>
 </div>
 
-<div class="container">
+<div class="container mb-5">
     <div class="row justify-content-end">
         <div class="col-md-4">
             <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#pharmacy"><span class="fas fa-capsules"></span> Pharmacy</a>
