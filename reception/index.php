@@ -118,70 +118,70 @@ function Age($dob){
 
                                                 <div class="row">
                                                     <div class="form-group  col-md-4">
-                                                        <label for="e_firstName">First Name</label>
+                                                        <label for="">First Name</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-user"></i>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control"  value="<?php echo $row['firstName']; ?>" minlength="3" autocomplete="off" required="required" name="firstName" type="text" id="e_firstName">
+                                                            <input class="form-control"  value="<?php echo $row['firstName']; ?>" minlength="3" autocomplete="off" required="required" name="firstName" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group  col-md-4">
-                                                        <label for="e_lastName">Last Name</label>
+                                                        <label for="">Last Name</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-user"></i>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control" value="<?php echo $row['lastName']; ?>" minlength="3" autocomplete="off" required="required" name="lastName" type="text"  id="e_lastName">
+                                                            <input class="form-control" value="<?php echo $row['lastName']; ?>" minlength="3" autocomplete="off" required="required" name="lastName" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group  col-md-4">
-                                                        <label for="e_ins">INS Number</label>
+                                                        <label for="">INS Number</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <span class="fas fa-list"></span>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control" name="insurance" autocomplete="off" type="text" value="<?php echo $row['insurance']; ?>" id="e_ins">
+                                                            <input class="form-control" name="insurance" autocomplete="off" type="text" value="<?php echo $row['insurance']; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="form-group  col-md-4">
-                                                        <label for="e_contact">Contact</label>
+                                                        <label for="">Contact</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
                                                                     <span class="fas fa-phone"></span>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control" name="contact" autocomplete="off" type="text" value="<?php echo $row['contact']; ?>" id="tel">
+                                                            <input class="form-control" name="contact" autocomplete="off" type="text" value="<?php echo $row['contact']; ?>">
                                                         </div>
                                                     </div>
                                                     <div class="form-group  col-md-4">
-                                                        <label for="e_dob">DOB</label>
+                                                        <label for="">DOB</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text font-weight-bold">
                                                                     <span class="fas fa-user"></span>
                                                                 </div>
                                                             </div>
-                                                            <input class="form-control" value="<?php echo $row['dob']; ?>" name="dob" type="date" id="e_dob">
+                                                            <input class="form-control" value="<?php echo $row['dob']; ?>" name="dob" type="date">
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group  col-md-4">
-                                                        <label for="e_sex">Sex</label>
+                                                        <label for="">Sex</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text font-weight-bold">
                                                                     <span class="fas fa-user"></span>
                                                                 </div>
                                                             </div>
-                                                            <select name="sex" id="e_sex" class="form-control" required>
+                                                            <select name="sex" class="form-control" required>
                                                                 <option value="<?php echo $row['sex']; ?>"><?php echo ucfirst($row['sex'])  ?></option>
                                                                 <option value="<?php echo $row['sex'] == 'male' ? 'female' : 'male'; ?>"><?php echo $row['sex'] == 'male' ? 'Female' : 'Male'; ?></option>
 
@@ -191,7 +191,7 @@ function Age($dob){
 
 
                                                     <div class="form-group  col-md-12">
-                                                        <label for="e_address">Address</label>
+                                                        <label for="">Address</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text">
@@ -199,7 +199,7 @@ function Age($dob){
                                                                 </div>
                                                             </div>
                                                             <textarea name="address" spellcheck="false"
-                                                                      class="form-control" id="e_address"
+                                                                      class="form-control"
                                                                       cols="10" rows="4"><?php echo $row['address']; ?></textarea>
                                                         </div>
                                                     </div>
@@ -405,7 +405,7 @@ function Age($dob){
 
                         <div class="row">
                             <div class="form-group  col-md-4">
-                                <label for="firstName">First Name</label>
+                                <label for="">First Name</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -419,11 +419,11 @@ function Age($dob){
                                            name="firstName"
                                            type="text"
                                            value=""
-                                           id="firstName">
+                                           >
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
-                                <label for="lastName">Last Name</label>
+                                <label for="">Last Name</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -436,52 +436,52 @@ function Age($dob){
                                            required="required"
                                            name="lastName"
                                            type="text"
-                                           id="lastName">
+                                           >
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
-                                <label for="ins">Insurance No</label>
+                                <label for="">Insurance No</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <span class="fas fa-list"></span>
                                         </div>
                                     </div>
-                                    <input class="form-control" name="insurance" autocomplete="off" type="text" id="ins">
+                                    <input class="form-control" name="insurance" autocomplete="off" type="text">
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
-                                <label for="contact">Contact</label>
+                                <label for="">Contact</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <span class="fas fa-phone"></span>
                                         </div>
                                     </div>
-                                    <input class="form-control" name="contact" autocomplete="off" type="text" id="contact">
+                                    <input class="form-control" name="contact" autocomplete="off" type="text">
                                 </div>
                             </div>
                             <div class="form-group  col-md-4">
-                                <label for="dob">DOB</label>
+                                <label for="">DOB</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text font-weight-bold">
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
-                                    <input class="form-control" required="required" name="dob" autocomplete="off" type="date" id="dob">
+                                    <input class="form-control" required="required" name="dob" autocomplete="off" type="date">
                                 </div>
                             </div>
 
                             <div class="form-group  col-md-4">
-                                <label for="sex">Sex</label>
+                                <label for="">Sex</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text font-weight-bold">
                                             <span class="fas fa-user"></span>
                                         </div>
                                     </div>
-                                    <select name="sex" id="sex" class="form-control" required>
+                                    <select name="sex" class="form-control" required>
                                         <option value=""></option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
@@ -490,7 +490,7 @@ function Age($dob){
                             </div>
 
                             <div class="form-group  col-md-4">
-                                <label for="amount">Consultation Fee</label>
+                                <label for="">Consultation Fee</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -498,19 +498,19 @@ function Age($dob){
                                         </div>
                                     </div>
                                     <input type="number" class="form-control" step="0.01"
-                                           name="amount" id="amount" readonly value="<?php echo $consultation_fee['consultation_fee']; ?>">
+                                           name="amount"  readonly value="<?php echo $consultation_fee['consultation_fee']; ?>">
                                 </div>
                             </div>
 
                             <div class="form-group  col-md-12">
-                                <label for="address">Address</label>
+                                <label for="">Address</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <span class="fas fa-address-card"></span>
                                         </div>
                                     </div>
-                                    <textarea name="address" spellcheck="false" class="form-control" id="address" cols="10" rows="4"></textarea>
+                                    <textarea name="address" spellcheck="false" class="form-control" cols="10" rows="4"></textarea>
                                 </div>
                             </div>
 

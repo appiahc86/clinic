@@ -62,7 +62,7 @@ if (count($errors) == 0){
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MUlTI-CLINIC</title>
-    <link rel="icon" href="/img/icon.ico">
+    <link rel="icon" href="../public/img/icon.ico">
     <!-- Custom fonts for this template-->
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->

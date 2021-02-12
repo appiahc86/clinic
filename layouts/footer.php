@@ -3,13 +3,13 @@
 <!-- End of Main Content -->
 
 <!-- Footer -->
-<footer class="sticky-footer bg-white shadow-lg" style="padding: 15px !important;">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto" style="font-size: 1em;">
-            <span>Copyright &copy; <b>MULTI-CLINIC</b> <?php echo date('Y'); ?></span>
-        </div>
-    </div>
-</footer>
+<!--<footer class="sticky-footer bg-white shadow-lg" style="padding: 15px !important;">-->
+<!--    <div class="container my-auto">-->
+<!--        <div class="copyright text-center my-auto" style="font-size: 1em;">-->
+<!--            <span>Copyright &copy; <b>MULTI-CLINIC</b> --><?php //echo date('Y'); ?><!--</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</footer>-->
 <!-- End of Footer -->
 
 </div>
@@ -60,8 +60,8 @@
 <script src="../public/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="../public/js/demo/chart-area-demo.js"></script>
-<script src="../public/js/demo/chart-pie-demo.js"></script>
+<!--<script src="../public/js/demo/chart-area-demo.js"></script>-->
+<!--<script src="../public/js/demo/chart-pie-demo.js"></script>-->
 
 <!--Toastr-->
 <script src="../public/js/toastr.js"></script>
@@ -108,6 +108,12 @@
         <?php   if (!empty($_SESSION['opdNumber'])){  ?>
         $('#opdNumber').click();
        <?php  unset($_SESSION['opdNumber']); } ?>
+
+        //Clock
+        const clock = document.querySelector("#clock");
+        setInterval(function (){
+            clock.innerHTML = new Date().toLocaleTimeString();
+        }, 10)
 
     }
 

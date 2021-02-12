@@ -90,7 +90,8 @@ $query->execute([$patient_id]);
                                         </div>
 
                                         <div class="modal-body">
-                                            <textarea name="" id="" spellcheck="false" cols="30" rows="12" class="form-control" disabled><?php echo $row['diagnosis']; ?></textarea>
+                                            <textarea name="" id="" spellcheck="false" cols="30" rows="12" class="form-control"
+                                                      disabled><?php echo $row['diagnosis']; ?></textarea>
                                         </div>
 
                                     </div>
@@ -104,7 +105,7 @@ $query->execute([$patient_id]);
                                     <br><br>
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h6><b>Lat Test</b></h6>
+                                            <h6><b>Lab Test</b></h6>
                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times</span>
                                             </button>
