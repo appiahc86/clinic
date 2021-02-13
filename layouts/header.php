@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>MULTI-CLINIC</title>
-    <link rel="icon" href="../public/img/icon.ico">
+    <link rel="icon" type="image/jpg" href="../public/img/logo.jpg" sizes="32x32"/>
     <!-- Custom fonts for this template-->
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
