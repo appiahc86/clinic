@@ -26,14 +26,14 @@ CREATE TABLE `patients` (
   `patient_id` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(150) NOT NULL,
   `lastName` varchar(150) NOT NULL,
-  `dob` date DEFAULT NULL,
+  `dob` date NOT NULL,
   `sex` enum('male','female') NOT NULL,
-  `contact` varchar(50) NOT NULL,
-  `insurance` varchar(100) NOT NULL,
+  `contact` varchar(50) DEFAULT NULL,
+  `insurance` varchar(100) DEFAULT NULL,
   `address` varchar(255) NOT NULL,
   `registration_date` date NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`patient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,6 +56,7 @@ DROP TABLE IF EXISTS `settings`;
 CREATE TABLE `settings` (
   `settings_id` int(11) NOT NULL AUTO_INCREMENT,
   `consultation_fee` float NOT NULL DEFAULT 0,
+  `card_fee` float NOT NULL DEFAULT 0,
   PRIMARY KEY (`settings_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -66,7 +67,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES (1,30);
+INSERT INTO `settings` VALUES (1,50,20);
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +91,7 @@ CREATE TABLE `treatments` (
   `consultation_fee` float DEFAULT 0,
   `date` date NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`treatment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +131,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'developer','developer','developer','1','$2y$10$ab2H/q2BKxmECrp9gFgTfuRqhP74j86.WQRmwrKDFZjKJhIY9ndO2',1,0,'2021-02-05'),(4,'receptionist','receptionist','receptionist','4','$2y$10$ST561hhugzTBXymyy0DuvORpx5Y5zoyUqHhIsdnijqjK2DcC1r6ei',1,0,'2021-02-06'),(5,'doctor','doctor','doctor','2','$2y$10$BadgB./qlGbPSxKOsTxEYOFt3uITSTH/Mb4FdmL/5yRrUobYgzGjW',1,0,'2021-02-06'),(6,'Lab','Lab','lab','3','$2y$10$r3UEFcl2BLElnQM/rpa2uu/1/e3wJHJmfLLK/./p1xicM0A68LSdO',1,0,'2021-02-06'),(7,'pharmacist','pharmacy','pharmacist','5','$2y$10$/8Ezqk.rzY2HURK5/cH0ouNmE8L/IkMtJOhUGt7P6Xfrr2GFiu2Gy',1,0,'2021-02-06');
+INSERT INTO `users` VALUES (2,'developer','developer','developer','1','$2y$10$ab2H/q2BKxmECrp9gFgTfuRqhP74j86.WQRmwrKDFZjKJhIY9ndO2',1,0,'2021-02-05'),(4,'Receptionist','Receptionist','receptionist','4','$2y$10$ST561hhugzTBXymyy0DuvORpx5Y5zoyUqHhIsdnijqjK2DcC1r6ei',1,0,'2021-02-06'),(5,'doctor','doctor','doctor','2','$2y$10$BadgB./qlGbPSxKOsTxEYOFt3uITSTH/Mb4FdmL/5yRrUobYgzGjW',1,0,'2021-02-06'),(6,'Lab','Lab','lab','3','$2y$10$r3UEFcl2BLElnQM/rpa2uu/1/e3wJHJmfLLK/./p1xicM0A68LSdO',1,0,'2021-02-06'),(7,'pharmacist','pharmacy','pharmacist','5','$2y$10$/8Ezqk.rzY2HURK5/cH0ouNmE8L/IkMtJOhUGt7P6Xfrr2GFiu2Gy',1,0,'2021-02-06');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -143,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-10  4:24:33
+-- Dump completed on 2021-02-14 11:54:03

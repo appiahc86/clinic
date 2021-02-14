@@ -55,9 +55,9 @@ function Age($dob){
                     include('../dbconnect.php');
 
                     //Get consultaion fee
-                    $consultation_fee_query = $db->prepare("SELECT * FROM settings LIMIT 1");
-                    $consultation_fee_query->execute();
-                    $consultation_fee = $consultation_fee_query->fetch();
+                    $settings_query = $db->prepare("SELECT * FROM settings LIMIT 1");
+                    $settings_query->execute();
+                    $app_settings = $settings_query->fetch();
 
 
                     //Get all patients
@@ -357,7 +357,7 @@ function Age($dob){
                                             <div class="form-group">
                                                 <label for=""><b>Consultation Fee</b></label>
                                                     <input type="number" name="consultation_fee" step="0.01" class="form-control"
-                                                           value="<?php echo $consultation_fee['consultation_fee']; ?>" readonly>
+                                                           value="<?php echo $app_settings['consultation_fee']; ?>" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <input type="submit" value="Proceed" class="btn btn-primary btn-block mybtn">
@@ -490,7 +490,7 @@ function Age($dob){
                             </div>
 
                             <div class="form-group  col-md-4">
-                                <label for="">Consultation Fee</label>
+                                <label for="">Card Fee</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -498,7 +498,7 @@ function Age($dob){
                                         </div>
                                     </div>
                                     <input type="number" class="form-control" step="0.01"
-                                           name="amount"  readonly value="<?php echo $consultation_fee['consultation_fee']; ?>">
+                                           name="amount"  readonly value="<?php echo $app_settings['card_fee']; ?>">
                                 </div>
                             </div>
 
